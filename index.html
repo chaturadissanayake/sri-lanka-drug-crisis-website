@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Shadow War: Sri Lanka's Drug Crisis (2018–2025)</title>
+  <meta name="description" content="A responsive scrollytelling analysis of Sri Lanka's drug crisis, examining arrests, seizures, and treatment data from 2018 to 2025." />
+  <meta name="author" content="Chatura Dissanayake" />
+  <meta name="theme-color" content="#0d1b2a" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="donation-banner" class="donation-banner" role="banner" aria-label="Support our work">
+    <div class="container donation-content">
+      <p>This data story is free. <strong>Your support helps continue this important work.</strong></p>
+      <div class="donation-actions">
+        <button id="donate-btn" class="btn btn-primary">Support Now</button>
+        <button id="dismiss-banner" class="btn btn-secondary" aria-label="Dismiss donation banner">Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-donate-container">
+    <button id="header-donate-btn" class="btn btn-primary header-donate-btn">Support This Work</button>
+  </div>
+
+  <section id="news-ticker-container" aria-label="Recent headlines" role="region">
+    <div class="ticker-label">LATEST</div>
+    <div id="news-ticker" aria-live="polite" aria-atomic="false"></div>
+  </section>
+
+  <header id="main-header" class="container" role="banner">
+    <h1 class="main-headline">The Shadow War</h1>
+    <h2 class="subtitle">Unpacking Sri Lanka's Drug Crisis Through Arrests, Seizures, and Treatment</h2>
+    <p class="byline">By: Chatura Dissanayake, Information Designer</p>
+    
+    <progress id="scroll-progress" max="100" value="0" aria-label="Scroll progress through story">0%</progress>
+  </header>
+
+  <main id="scrolly-container" role="main">
+    <section id="scrolly" aria-label="Interactive data story">
+      <figure id="charts-container" aria-labelledby="charts-heading" role="region">
+        <h2 id="charts-heading" class="visually-hidden">Data Visualizations</h2>
+        <div class="image-container">
+          <img data-visual="0" class="story-image active" loading="eager" 
+               src="assets/chart-arrests-vs-treatment.png" 
+               alt="A dot plot chart showing a large number of orange dots representing over 162,000 drug-related arrests in 2023, compared to a very small number of blue dots representing only 1,894 treatment cases, visualizing the stark imbalance." />
+          <img data-visual="1" class="story-image" loading="lazy" 
+               src="assets/chart-presidents.png" 
+               alt="A stacked bar chart comparing drug control statistics under presidents Sirisena, Rajapaksa, Wickremesinghe, and Dissanayake from 2018 to 2025. It shows that total arrests peaked under Ranil Wickremesinghe in 2023." />
+          <img data-visual="2" class="story-image" loading="lazy" 
+               src="assets/chart-seizures-stream.png" 
+               alt="A streamgraph showing the volume of drug seizures from 2018 to 2023. Cannabis makes up the largest area, while methamphetamine seizures (a thinner, growing stream) show a significant upward trend." />
+          <img data-visual="3" class="story-image" loading="lazy" 
+               src="assets/chart-arrests-by-substance.png" 
+               alt="Four radial charts for heroin, cannabis, methamphetamine, and other drugs, showing yearly arrest numbers from 2018 to 2023. Arrests for methamphetamine show a dramatic increase in later years." />
+          <img data-visual="4" class="story-image" loading="lazy"
+               src="assets/chart-rehab-providers.png"
+               alt="Bubble chart showing rehabilitation providers in 2022 and 2023. The largest bubble represents NDDCB Centers, accounting for over 55% of cases, with smaller bubbles for prison-based rehab and NGOs." />
+          <img data-visual="5" class="story-image" loading="lazy" 
+               src="assets/chart-provinces.png" 
+               alt="A chord diagram illustrating the flow of drug types (cannabis, heroin, methamphetamine) to different provinces in Sri Lanka. The Western Province is shown with the thickest chords, indicating it is the primary hub for all drug types." />
+        </div>
+        <div id="share-icons-container" class="share-icons-container" role="toolbar" aria-label="Share this visual">
+             </div>
+      </figure>
+
+      <article id="story" aria-label="Story steps" role="article">
+        <div id="step-0" class="step active" data-step="0" role="region" aria-labelledby="step-0-heading" tabindex="0">
+          <h2 id="step-0-heading">An Overlooked Reality</h2>
+          <p>Sri Lanka faces a persistent and complex drug crisis. While law enforcement has been at the forefront, official data reveals a deeper, often overlooked reality. This analysis examines the past six years of data to provide a clearer picture of the nation's struggle, revealing a critical imbalance between enforcement and rehabilitation.</p>
+        </div>
+        <div id="step-1" class="step" data-step="1" role="region" aria-labelledby="step-1-heading" tabindex="0">
+          <h2 id="step-1-heading">The Political Context of a Crisis</h2>
+          <p>The battle against drug abuse has evolved under successive political administrations. An analysis of arrest and seizure data across presidential periods reveals distinct trends, reflecting shifts in policy. While each administration pledged to combat the drug trade, the numbers show moments of heightened crackdown alongside periods of consistent struggle, shaping the long-term trajectory of the crisis.</p>
+        </div>
+        <div id="step-2" class="step" data-step="2" role="region" aria-labelledby="step-2-heading" tabindex="0">
+          <h2 id="step-2-heading">The Escalating Scale of Seizures</h2>
+          <p>The sheer volume of narcotics seized paints a stark picture. From 2018 to 2023, authorities intercepted thousands of kilograms of illicit substances, with cannabis and heroin consistently dominating. These figures highlight successful police operations but also suggest a robust supply chain that continues to feed the market despite aggressive interdiction efforts.</p>
+        </div>
+        <div id="step-3" class="step" data-step="3" role="region" aria-labelledby="step-3-heading" tabindex="0">
+          <h2 id="step-3-heading">A Swell in Arrests</h2>
+          <p>As seizures grew, so did drug-related arrests, pointing to an intensified crackdown. However, a closer look reveals that a significant portion of those arrested are not kingpins but individuals with substance use disorders. This distinction is crucial, as it shifts the focus from a purely criminal justice issue to one with significant public health implications.</p>
+        </div>
+        <div id="step-4" class="step" data-step="4" role="region" aria-labelledby="step-4-heading" tabindex="0">
+          <h2 id="step-4-heading">The State of Rehabilitation</h2>
+          <p>The landscape of rehabilitation providers highlights limited treatment capacity. The scale of the crisis far outstrips the resources of government and non-governmental rehabilitation centers, which struggle to meet the growing demand. This lack of available resources means that for many, a path to recovery remains out of reach.</p>
+        </div>
+        <div id="step-5" class="step" data-step="5" role="region" aria-labelledby="step-5-heading" tabindex="0">
+          <h2 id="step-5-heading">A Geography of the Crisis</h2>
+          <p>The drug crisis is a nationwide challenge, not confined to one area. A district-by-district breakdown reveals the geographical spread of drug-related activities, pinpointing where the problem is most prevalent. From major metropolitan areas to rural regions, the map of drug findings underscores the extensive reach of this issue.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-section container">
+      <div class="cite-work">
+        <h2>Cite & Reuse This Work</h2>
+        <div class="citation-content">
+          <div class="citation-box">
+            <p><strong>Journalistic Style:</strong><br>Chatura Dissanayake. (2025). The Shadow War: Unpacking Sri Lanka's Drug Crisis. Retrieved from [Website URL]</p>
+            <p><strong>APA Style:</strong><br>Dissanayake, C. (2025). <em>The Shadow War: Unpacking Sri Lanka's Drug Crisis</em> [Data Story]. Retrieved from [Website URL]</p>
+          </div>
+          <div class="bibtex">
+            <h3>BibTeX Citation</h3>
+            <pre id="bibtex-content">@article{dissanayake-drug-crisis-2025,
+  title = {The Shadow War: Unpacking Sri Lanka's Drug Crisis Through Arrests, Seizures, and Treatment},
+  author = {Dissanayake, Chatura},
+  year = {2025},
+  journal = {Data Story},
+  note = {Retrieved from [Website URL]}
+}</pre>
+            <button id="copy-bibtex-btn" class="btn">Copy BibTeX</button>
+          </div>
+          <div class="citation-box">
+             <p>All text and original visualizations are available under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)</a>. You are free to share and adapt this material for non-commercial purposes with attribution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="behind-the-numbers" class="content-section container">
+      <h2>Behind the Numbers</h2>
+      <p class="section-description">This analysis is built on official data. We encourage you to explore the primary sources to foster a transparent, evidence-based discussion.</p>
+      <ul class="source-list">
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Handbook of Drug Abuse Information in Sri Lanka, 2024</a> - National Dangerous Drugs Control Board</li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Trends of Drug-Related Arrests, 2024</a> - Research Division, NDDCB</li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">NDDCB Annual Reports (2018–2023)</a> - National Dangerous Drugs Control Board</li>
+      </ul>
+    </section>
+
+    <div id="poll-results-inline" class="poll-results-inline container hidden" role="region" aria-live="polite">
+      <h3>Your Prior Vote</h3>
+      <p id="prior-vote-text"></p>
+    </div>
+  </main>
+
+  <footer id="site-footer" class="container site-footer" role="contentinfo">
+     <div class="footer-content">
+      <div class="footer-section">
+        <h3>Support This Work</h3>
+        <p>This project is independent. Your support helps cover research and development.</p>
+        <p><strong>Bank:</strong> HNB<br>
+           <strong>A/C:</strong> 089020252949<br>
+           <strong>Name:</strong> Chatura Dissanayake</p>
+      </div>
+      <div class="footer-section">
+        <h3>Share This Story</h3>
+        <div id="project-share-buttons" class="share-buttons-footer">
+          </div>
+      </div>
+      <div class="footer-section">
+        <h3>Stay Connected</h3>
+        <p><a href="https://www.instagram.com/chaturadissanayake/" target="_blank" rel="noopener noreferrer">Instagram</a> &bull; <a href="https://x.com/atakatus" target="_blank" rel="noopener noreferrer">X (Twitter)</a> &bull; <a href="https://www.linkedin.com/in/chaturadissanayake/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2025 Chatura Dissanayake. <a href="#main-header" class="back-to-top">Back to top</a></p>
+  </footer>
+
+  <div id="poll-modal-overlay" class="poll-modal-overlay hidden" role="presentation"></div>
+  <div id="poll-modal" class="poll-modal hidden" role="dialog" aria-modal="true" aria-labelledby="poll-heading">
+    <button id="close-poll-btn" class="close-modal" aria-label="Close poll">&times;</button>
+    <div class="poll-content">
+      <div id="poll-step-predict" class="poll-step active">
+          <h2 id="poll-heading-predict">Reader Poll: Make a Prediction</h2>
+          <form id="poll-predict-form" aria-describedby="poll-description-predict">
+            <p id="poll-description-predict" class="poll-description">First, what do you think most other readers believe should be the top priority?</p>
+            <fieldset>
+              <legend class="visually-hidden">Prediction for top priority</legend>
+              <div class="poll-option">
+                <input type="radio" id="predict-enforcement" name="poll-predict" value="enforcement" required />
+                <label for="predict-enforcement">Increasing Law Enforcement</label>
+              </div>
+              <div class="poll-option">
+                <input type="radio" id="predict-treatment" name="poll-predict" value="treatment" required />
+                <label for="predict-treatment">Expanding Treatment Services</label>
+              </div>
+              <div class="poll-option">
+                <input type="radio" id="predict-prevention" name="poll-predict" value="prevention" required />
+                <label for="predict-prevention">Investing in Prevention Programs</label>
+              </div>
+            </fieldset>
+            <div class="poll-actions">
+              <button type="submit" class="btn btn-primary">Lock In Prediction</button>
+            </div>
+          </form>
+      </div>
+      <div id="poll-step-vote" class="poll-step">
+        <h2 id="poll-heading-vote">Now, Cast Your Vote</h2>
+        <form id="reader-poll-form" aria-describedby="poll-description-vote">
+          <p id="poll-description-vote" class="poll-description">What should be Sri Lanka's top priority in addressing the drug crisis?</p>
+          <fieldset id="poll-fieldset">
+            <legend class="visually-hidden">Your vote for top priority</legend>
+            <div class="poll-option">
+              <input type="radio" id="poll-enforcement" name="poll-priority" value="enforcement" required />
+              <label for="poll-enforcement">Increasing Law Enforcement and Seizures</label>
+            </div>
+            <div class="poll-option">
+              <input type="radio" id="poll-treatment" name="poll-priority" value="treatment" required />
+              <label for="poll-treatment">Expanding Treatment and Rehabilitation Services</label>
+            </div>
+            <div class="poll-option">
+              <input type="radio" id="poll-prevention" name="poll-priority" value="prevention" required />
+              <label for="poll-prevention">Investing in Public Awareness and Prevention Programs</label>
+            </div>
+          </fieldset>
+          <div class="poll-actions">
+            <button type="submit" class="btn btn-primary">Vote</button>
+            <button type="button" id="remind-later-btn" class="btn btn-secondary">Remind Me Later</button>
+          </div>
+        </form>
+      </div>
+      <div id="poll-results" class="poll-step" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="noscript container" role="alert">
+      <h2>JavaScript Required</h2>
+      <p>JavaScript is required for the interactive features of this page. Please enable it to view the full experience.</p>
+    </div>
+  </noscript>
+
+  <script src="app.js"></script>
+</body>
+</html>
