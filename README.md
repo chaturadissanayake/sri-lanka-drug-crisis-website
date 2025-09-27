@@ -45,8 +45,7 @@ To view and run this project locally, follow these simple steps:
     Open the `index.html` file in any modern web browser.
 
     ```bash
-    # For example, using a simple command-line utility
-    , open index.html
+    # For example, using a simple command-line utility, open index.html
     ```
 
 The project requires no build tools or external dependencies to run—all functionality is self-contained within the three core files.
