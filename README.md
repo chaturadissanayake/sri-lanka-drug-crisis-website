@@ -1,59 +1,81 @@
-### The Shadow War: Sri Lanka's Drug Crisis (2018–2025)
+This is a request to synthesise a `README.md` file from a collection of web development source files (`index.html`, `style.css`, `app.js`).
 
-A data-driven, scrollytelling analysis of Sri Lanka's drug crisis, examining arrests, seizures, and treatment data from 2018 to 2025. The project reveals a critical imbalance between law enforcement and rehabilitation efforts.
+The project is a **scrollytelling data story** titled "**The Shadow War: Sri Lanka's Drug Crisis (2018–2025)**." The README should cover the project's purpose, features, technology stack, setup instructions, and citation information, as derived from the code.
 
------
+Here is the generated `README.md`:
 
-### Features
+````markdown
+# The Shadow War: Sri Lanka's Drug Crisis (2018–2025)
 
-  * **Interactive Storytelling:** A "scrollytelling" interface where the narrative text is synchronised with data visualisations.
-  * **Gamified Poll:** A reader poll that asks users to predict and then vote on the top priority for addressing the drug crisis.
-  * **Dynamic News Ticker:** A scrolling news ticker at the top of the page for key headlines.
-  * **Social Sharing:** Integrated social sharing buttons for the entire project as well as for individual data visualisations.
-  * **Donation Banner:** A sticky banner to support the project's independent journalism.
-  * **Citations:** Built-in citation information in multiple formats (journalistic, APA, and BibTeX) for easy reuse of the work.
+**A Scrollytelling Data Story on Arrests, Seizures, and Treatment**
 
-### Data Sources
+This repository contains the source code for an interactive data story that visualises and analyses Sri Lanka's ongoing drug crisis from 2018 to 2025. The project is designed using a **scrollytelling** format to guide the reader through key findings, policy shifts, and geographic disparities in the national response, highlighting the critical imbalance between law enforcement and public health support.
 
-The analysis is built on official data from the National Dangerous Drugs Control Board.
+## 🚀 Key Features
 
-  * `Handbook of Drug Abuse Information in Sri Lanka, 2024`
-  * `Trends of Drug-Related Arrests, 2024`
-  * `NDDCB Annual Reports (2018–2023)`
+* **Scrollytelling Format:** A modern, immersive narrative experience where the story unfolds as the user scrolls, featuring distinct steps tied to data visualisations.
+* **Dual-Theme Support (Dark/Light Mode):** Users can easily toggle between a refined dark theme (default) and a light theme using a dedicated button.
+* **Dynamic Data Visualisations:** Integration points for six key charts that become visible upon scrolling, covering topics like Arrests vs. Treatment, Shifting Substance Trends (Methamphetamine rise), Seizures, Rehabilitation Capacity, Policy Timelines, and Geographic Distribution.
+* **Persistent Scroll Progress Bar:** A thin bar at the top of the viewport to indicate reading progress.
+* **News Ticker:** A continuously scrolling banner for high-level updates and key facts.
+* **Side Navigation:** A fixed dot-navigation bar that allows readers to jump between story sections and shows the current step.
+* **Image Lightbox:** A feature to enlarge and view data visualisations or images in a modal.
+* **Interactive Citation:** Provides easy copy functionality for **Journalistic**, **APA Style**, and **BibTeX** citation formats.
+* **Accessibility & Interactivity:** Includes keyboard shortcuts (`Shift + ?` to view shortcuts, `T` to toggle theme, `Esc` to close modals).
 
------
+## 💻 Tech Stack
 
-### Licensing
+The project is a pure front-end application built with modern web standards:
 
-This project is released under a dual-licensing model, covering both the code and the content.
+* **HTML5:** Structure and content organisation.
+* **CSS3:** Styled using **CSS Variables (Design Tokens)** for easy theming and a consistent design language.
+* **Vanilla JavaScript (`app.js`):** Powers all interactive features (scrollytelling logic, Intersection Observer for animations, theme toggle, lightbox, copy-to-clipboard, keyboard shortcuts, etc.).
+* **Fonts:** Uses **Inter** (for body text) and **Playfair Display** (for headlines) for a strong visual hierarchy.
 
-  * **Code:** The underlying code (HTML, CSS, JavaScript, etc.) is licensed under the **MIT License**.
-  * **Content:** All text and original visualisations are licensed under a **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**. You are more than welcome to share and adapt the material for non-commercial purposes with attribution.
+## ⚙️ Setup and Usage
 
-### Citation
+To view and run this project locally, follow these simple steps:
 
-You can cite this work using the following formats:
+1.  **Clone the Repository:**
+    ```bash
+    git clone [repository-url]
+    cd the-shadow-war
+    ```
+2.  **Open the File:**
+    Open the `index.html` file in any modern web browser.
 
-**Journalistic Style**
+    ```bash
+    # For example, using a simple command-line utility
+    , open index.html
+    ```
+
+The project requires no build tools or external dependencies to run—all functionality is self-contained within the three core files.
+
+## 🔗 Project Structure
+
+````
+
+.
+├── index.html          \# Main HTML structure and content
+├── style.css           \# All custom CSS, design tokens, and theming logic
+├── app.js              \# All JavaScript logic for interactivity and scrollytelling
+└── assets/             \# Directory for images, charts, and favicons (not included in upload but referenced)
+├── chart-\*.png     \# Data visualization images
+└── ...
 
 ```
-Chatura Dissanayake. (2025). The Shadow War: Unpacking Sri Lanka's Drug Crisis. Retrieved from [Website URL]
-```
 
-**APA Style**
+## 📝 Citation
 
-```
-Dissanayake, C. (2025). The Shadow War: Unpacking Sri Lanka's Drug Crisis [Data Story]. Retrieved from [Website URL]
-```
+If you use this work or its code as a reference, please cite it as follows (using the Journalistic format for simplicity):
 
-**BibTeX**
+> Chatura Dissanayake. (2025). *The Shadow War: Unpacking Sri Lanka's Drug Crisis*. Retrieved from **[Website URL]**
 
-```
-@article{dissanayake-drug-crisis-2025,
-  title = {The Shadow War: Unpacking Sri Lanka's Drug Crisis Through Arrests, Seizures, and Treatment},
-  author = {Dissanayake, Chatura},
-  year = {2025},
-  journal = {Data Story},
-  note = {Retrieved from [Website URL]}
-}
+## ⚖️ License
+
+All text and original visualisations are available under a **[Creative Commons BY-NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/)**.
+
+***
+
+*Built by Chatura Dissanayake, Information Designer.*
 ```
