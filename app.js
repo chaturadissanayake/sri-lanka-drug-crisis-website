@@ -1,211 +1,292 @@
-// app.js - Enhanced with gamified poll, social sharing, and new content sections
-class DrugDataStory {
-  constructor() {
-    this.currentStep = 0;
-    this.pollTriggered = false;
-    this.userPrediction = null;
-    this.lastFocusedElement = null;
-    this.POLL_CORRECT_ANSWER = 'treatment';
-    this.init();
-  }
+/* =========================================================
+   THE SHADOW WAR — V5.0 APP.JS (FINAL REDESIGN)
+   - Added robust right-click prevention for images
+   - Refined component interactions and initialization
+   ========================================================= */
 
-  init() {
-    this.cacheDOM();
-    this.setupEventListeners();
-    this.initNewsTicker();
-    this.initScrollytelling();
-    this.initPoll();
-    this.initSocialSharing();
-    this.initCopyBibTeX();
-    this.initDonationBanner();
-    this.checkExistingPollResponse();
-  }
+(function() {
+  "use strict";
 
-  cacheDOM() {
-    this.dom = {
-      body: document.body,
-      article: document.querySelector('#story'),
-      steps: document.querySelectorAll('.step'),
-      visuals: document.querySelectorAll('.story-image'),
-      newsTicker: document.querySelector('#news-ticker'),
-      newsTickerContainer: document.querySelector('#news-ticker-container'),
-      progressEl: document.querySelector('#scroll-progress'),
-      pollModal: document.querySelector('#poll-modal'),
-      pollOverlay: document.querySelector('#poll-modal-overlay'),
-      closePollBtn: document.querySelector('#close-poll-btn'),
-      pollSteps: document.querySelectorAll('.poll-step'),
-      pollPredictForm: document.querySelector('#poll-predict-form'),
-      pollVoteForm: document.querySelector('#reader-poll-form'),
-      pollFieldset: document.querySelector('#poll-fieldset'),
-      pollResults: document.querySelector('#poll-results'),
-      pollResultsInline: document.querySelector('#poll-results-inline'),
-      priorVoteText: document.querySelector('#prior-vote-text'),
-      copyBibTeXBtn: document.querySelector('#copy-bibtex-btn'),
-      bibtexContent: document.querySelector('#bibtex-content'),
-      donationBanner: document.querySelector('#donation-banner'),
-      donateBtn: document.querySelector('#donate-btn'),
-      headerDonateBtn: document.querySelector('#header-donate-btn'),
-      dismissBannerBtn: document.querySelector('#dismiss-banner'),
-      footer: document.querySelector('#site-footer'),
-      remindLaterBtn: document.querySelector('#remind-later-btn'),
-      shareIconsContainer: document.querySelector('#share-icons-container'),
-      projectShareContainer: document.querySelector('#project-share-buttons')
-    };
-  }
+  /* ---------- 1. ICONS (Feather Icons SVG) ---------- */
+  const ICONS = {
+    sun: `<svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
+    moon: `<svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+    x: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+    x_social: `<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>`,
+    linkedin: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+    instagram: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
+    copy: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+    check: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+    plus: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`
+  };
 
-  setupEventListeners() {
-    window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 10));
-    document.addEventListener('keydown', (e) => this.handleKeydown(e));
-    this.dom.newsTickerContainer?.addEventListener('mouseenter', () => this.dom.newsTicker.classList.add('paused'));
-    this.dom.newsTickerContainer?.addEventListener('mouseleave', () => this.dom.newsTicker.classList.remove('paused'));
-    this.dom.closePollBtn?.addEventListener('click', () => this.closePollModal());
-    this.dom.pollOverlay?.addEventListener('click', () => this.closePollModal());
-    this.dom.dismissBannerBtn?.addEventListener('click', () => this.dismissDonationBanner());
-    this.dom.donateBtn?.addEventListener('click', () => this.handleDonation());
-    this.dom.headerDonateBtn?.addEventListener('click', () => this.handleDonation());
-    this.dom.remindLaterBtn?.addEventListener('click', () => this.remindLater());
-  }
+  /* ---------- 2. UTILITIES ---------- */
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  handleKeydown(e) { if (e.key === 'Escape' && !this.dom.pollModal.classList.contains('hidden')) this.closePollModal(); }
-  throttle(func, limit) { let inThrottle; return (...args) => { if (!inThrottle) { func.apply(this, args); inThrottle = true; setTimeout(() => inThrottle = false, limit); } }; }
-
-  async initNewsTicker() {
-    if (!this.dom.newsTicker) return;
-    const items = [
-      'SRI LANKA: Drug-related arrests surpass 160,000 in 2023, a new record high.', 'POLICY: Debates continue on prioritizing enforcement vs. public health and treatment.',
-      'TRENDS: Methamphetamine seizures see a sharp rise, indicating shifting drug markets.', 'HEALTH: Only a fraction of those arrested receive addiction treatment, highlighting a critical gap.',
-      'NATIONWIDE: Western Province remains the epicenter of drug arrests and seizures.'
-    ];
-    this.dom.newsTicker.innerHTML = [...items, ...items].map(item => `<span class="ticker-item">${item}</span><span class="ticker-item" aria-hidden="true">•</span>`).join('');
-  }
+  /* ---------- 3. CORE MODULES ---------- */
   
-  initScrollytelling() {
-    if (this.dom.steps.length === 0) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) this.updateActiveStep(parseInt(entry.target.dataset.step, 10)); });
-    }, { root: null, rootMargin: '0px 0px -40% 0px', threshold: 0.5 });
-    this.dom.steps.forEach(step => observer.observe(step));
-    this.updateActiveStep(0);
-    this.initFooterObserver();
-  }
+  const App = {
+    init() {
+      this.initComponents();
+      this.initScrollytelling();
+      this.initInteractions();
+      this.initAnimations();
+      this.initLightbox();
+      this.preventImageRightClick();
+    },
 
-  initFooterObserver() {
-    const footerObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.pollTriggered && !this.hasPollResponse() && !this.shouldRemindLater()) {
-          this.openPollModal(); this.pollTriggered = true;
-        }
-      });
-    }, { threshold: 0.1 });
-    if (this.dom.footer) footerObserver.observe(this.dom.footer);
-  }
-
-  handleScroll() {
-    if (!this.dom.progressEl || !this.dom.article) return;
-    const { top, height } = this.dom.article.getBoundingClientRect();
-    const scrollableHeight = height - window.innerHeight;
-    const progress = Math.min(100, Math.max(0, scrollableHeight <= 0 ? (top > 0 ? 0 : 100) : (-top / scrollableHeight) * 100));
-    this.dom.progressEl.value = progress;
-  }
-
-  updateActiveStep(stepIndex) {
-    if (isNaN(stepIndex)) return;
-    this.currentStep = stepIndex;
-    this.dom.steps.forEach(step => step.classList.toggle('active', parseInt(step.dataset.step) === stepIndex));
-    this.dom.visuals.forEach(vis => vis.classList.toggle('active', parseInt(vis.dataset.visual) === stepIndex));
-    this.updateShareIcons(stepIndex);
-  }
-
-  initPoll() {
-    this.dom.pollPredictForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.userPrediction = new FormData(this.dom.pollPredictForm).get('poll-predict');
-      if (this.userPrediction) this.setPollStep(1); // Move to voting step
-    });
-    this.dom.pollVoteForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const selectedValue = new FormData(this.dom.pollVoteForm).get('poll-priority');
-      if (selectedValue) {
-        this.savePollResponse(selectedValue);
-        this.showPollResults(selectedValue, this.userPrediction);
-        this.setPollStep(2); // Move to results step
-        setTimeout(() => this.closePollModal(), 4000);
+    initComponents() {
+      // --- Theme Toggle ---
+      const themeBtn = $('#theme-toggle');
+      if (themeBtn) {
+        themeBtn.innerHTML = ICONS.sun + ICONS.moon;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeBtn.addEventListener('click', () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
       }
-    });
-  }
+      
+      // --- Scroll Progress Bar ---
+      const bar = $('#scroll-progress-bar');
+      if (bar) {
+        window.addEventListener('scroll', () => {
+          const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+          bar.style.width = `${progress}%`;
+        }, { passive: true });
+      }
 
-  setPollStep(stepIndex) {
-    this.dom.pollSteps.forEach((step, index) => step.classList.toggle('active', index === stepIndex));
-  }
-  
-  openPollModal() {
-    this.lastFocusedElement = document.activeElement;
-    this.dom.pollModal.classList.remove('hidden');
-    this.dom.pollOverlay.classList.remove('hidden');
-    this.dom.body.classList.add('modal-open');
-    this.setPollStep(0); // Start at prediction step
-    this.setupFocusTrap();
-  }
+      // --- News Ticker ---
+      const ticker = $('#news-ticker');
+      if (ticker) {
+        const items = [
+          'SRI LANKA: Drug-related arrests surpassed 160,000 in 2023 — a record high.',
+          'POLICY: Debate continues over enforcement vs. treatment-first approaches.',
+          'TRENDS: Methamphetamine seizures rising — shifting drug markets.',
+          'HEALTH: Only a fraction entering treatment — a widening care gap.',
+          'GEOGRAPHY: Western Province remains the epicenter of arrests and seizures.'
+        ];
+        ticker.innerHTML = [...items, ...items].map(t => `<span class="ticker-item">${t}</span>`).join('');
+        const container = $('#news-ticker-container');
+        container?.addEventListener('mouseenter', () => ticker.classList.add('paused'));
+        container?.addEventListener('mouseleave', () => ticker.classList.remove('paused'));
+      }
+      
+      // --- Populate Icons ---
+      $('.accordion-icon')?.insertAdjacentHTML('beforeend', ICONS.plus);
+      $('#close-shortcuts')?.insertAdjacentHTML('beforeend', ICONS.x);
+      $('#close-lightbox')?.insertAdjacentHTML('beforeend', ICONS.x);
+      $$('.copy-btn').forEach(btn => {
+        btn.innerHTML += `<span class="copy-icon">${ICONS.copy}</span><span class="tooltip-text">Copied!</span>`;
+      });
+    },
 
-  closePollModal() {
-    this.dom.pollModal.classList.add('hidden');
-    this.dom.pollOverlay.classList.add('hidden');
-    this.dom.body.classList.remove('modal-open');
-    document.removeEventListener('keydown', this.focusTrapHandler);
-    this.lastFocusedElement?.focus();
-  }
+    initScrollytelling() {
+      const steps = $$('.step');
+      const navContainer = $('#scrolly-nav');
+      const footerNavContainer = $('#footer-nav');
 
-  checkExistingPollResponse() { const response = this.getPollResponse(); if (response) { this.showInlinePollResults(response); this.pollTriggered = true; } }
-  hasPollResponse() { return !!localStorage.getItem('drugPollResponse'); }
-  getPollResponse() { return localStorage.getItem('drugPollResponse'); }
-  shouldRemindLater() { const remindLater = localStorage.getItem('pollRemindLater'); return remindLater && new Date() < new Date(remindLater); }
-  remindLater() { const remindDate = new Date(); remindDate.setDate(remindDate.getDate() + 7); localStorage.setItem('pollRemindLater', remindDate.toISOString()); this.closePollModal(); }
-  savePollResponse(value) { try { localStorage.setItem('drugPollResponse', value); } catch (e) { console.warn('Could not save poll response.'); } }
+      if (steps.length === 0) return;
+      
+      // 1. Build side & footer navigation
+      let navListHTML = '';
+      let footerNavHTML = '';
+      steps.forEach(step => {
+        const id = step.id;
+        const title = step.dataset.title || `Section`;
+        navListHTML += `
+          <li class="scrolly-nav-item" data-step-id="${id}">
+            <a href="#${id}" aria-label="Go to ${title}"></a>
+            <span class="nav-label">${title}</span>
+          </li>`;
+        footerNavHTML += `<li><a href="#${id}">${title}</a></li>`;
+      });
+      if(navContainer) navContainer.innerHTML = `<ul>${navListHTML}</ul>`;
+      if(footerNavContainer) footerNavContainer.innerHTML = footerNavHTML;
 
-  showPollResults(vote, prediction) {
-    const labels = { enforcement: 'Law Enforcement', treatment: 'Treatment Services', prevention: 'Prevention Programs' };
-    let resultHTML = `<p>You voted for: <strong>${labels[vote]}</strong>.</p>`;
-    if (prediction === this.POLL_CORRECT_ANSWER) {
-      resultHTML += `<p style="color:var(--color-success)"><strong>You correctly predicted!</strong> Most readers also believe <strong>${labels[this.POLL_CORRECT_ANSWER]}</strong> should be the priority.</p>`;
-    } else {
-      resultHTML += `<p style="color:var(--color-warning)">Your prediction was ${labels[prediction]}, but most readers believe <strong>${labels[this.POLL_CORRECT_ANSWER]}</strong> should be the priority.</p>`;
+      // 2. Observer for activating charts and nav items
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const chart = $(`[data-visual="${entry.target.dataset.step}"]`);
+          const navItem = $(`[data-step-id="${id}"]`, navContainer);
+
+          if (entry.isIntersecting) {
+            chart?.classList.add('is-visible');
+            $$('.scrolly-nav-item', navContainer).forEach(item => item.classList.remove('active'));
+            navItem?.classList.add('active');
+          } else {
+            chart?.classList.remove('is-visible');
+          }
+        });
+      }, { rootMargin: "-50% 0px -50% 0px", threshold: 0 });
+
+      steps.forEach(step => observer.observe(step));
+    },
+
+    initInteractions() {
+      // --- Citation Tabs ---
+      const tabContainer = $('.citation-tabs');
+      if (tabContainer) {
+        tabContainer.addEventListener('click', (e) => {
+          const clickedTab = e.target.closest('.tab-button');
+          if (!clickedTab) return;
+          e.preventDefault();
+          $$('.tab-button', tabContainer).forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+          });
+          $$('.tab-panel', tabContainer).forEach(panel => panel.classList.remove('active'));
+          clickedTab.classList.add('active');
+          clickedTab.setAttribute('aria-selected', 'true');
+          $(`#${clickedTab.getAttribute('aria-controls')}`)?.classList.add('active');
+        });
+      }
+
+      // --- Copy-to-Clipboard ---
+      $$('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const target = $(btn.dataset.clipboardTarget);
+          if (!target) return;
+          try {
+            await navigator.clipboard.writeText(target.textContent.trim());
+            btn.classList.add('show-tooltip');
+            const icon = $('.copy-icon', btn);
+            if (icon) {
+              const original = icon.innerHTML;
+              icon.innerHTML = ICONS.check;
+              setTimeout(() => { icon.innerHTML = original; }, 1500);
+            }
+            setTimeout(() => btn.classList.remove('show-tooltip'), 1200);
+          } catch (err) { console.error('Failed to copy:', err); }
+        });
+      });
+
+      // --- Share & Social Icons ---
+      const shareContainer = $('#project-share-buttons');
+      const socialContainer = $('#social-links-footer');
+
+      if (shareContainer) {
+        const shareTitle = encodeURIComponent("The Shadow War: Sri Lanka's Drug Crisis");
+        const shareUrl = encodeURIComponent(window.location.href);
+        const shareButtons = {
+            X: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`,
+            LinkedIn: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`
+        };
+        shareContainer.innerHTML = Object.entries(shareButtons).map(([name, url]) =>
+            `<a href="${url}" target="_blank" rel="noopener" class="share-btn" aria-label="Share on ${name}">${name === 'X' ? ICONS.x_social : ICONS[name.toLowerCase()]}</a>`
+        ).join('');
+      }
+
+      if (socialContainer) {
+        const socialLinks = {
+            Instagram: 'https://www.instagram.com/chaturadissanayake/',
+            X: 'https://x.com/atakatus',
+            LinkedIn: 'https://www.linkedin.com/in/chaturadissanayake/'
+        };
+        socialContainer.innerHTML = Object.entries(socialLinks).map(([name, url]) =>
+            `<a href="${url}" target="_blank" rel="noopener" aria-label="Follow on ${name}">${name === 'X' ? ICONS.x_social : ICONS[name.toLowerCase()]}</a>`
+        ).join('');
+      }
+
+      // --- Keyboard Shortcuts Modal ---
+      const modal = $('#shortcuts-modal');
+      if (modal) {
+        const openModal = () => modal.setAttribute('aria-hidden', 'false');
+        const closeModal = () => modal.setAttribute('aria-hidden', 'true');
+        $('#close-shortcuts')?.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        window.addEventListener('keydown', (e) => {
+          if (e.key === '?' && e.shiftKey) { e.preventDefault(); openModal(); }
+          if (e.key === 't' && document.activeElement.tagName !== 'INPUT') $('#theme-toggle')?.click();
+        });
+      }
+    },
+    
+    initAnimations() {
+      // --- Appear on Scroll ---
+      const elements = $$('.animate-on-scroll');
+      if (elements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        elements.forEach(el => observer.observe(el));
+      }
+    },
+
+    initLightbox() {
+        const lightbox = $('#image-lightbox');
+        if (!lightbox) return;
+
+        const lightboxImage = $('.lightbox-image', lightbox);
+        const lightboxCaption = $('.lightbox-caption', lightbox);
+        const closeBtn = $('#close-lightbox');
+        let lastFocusedElement;
+
+        const openLightbox = (trigger) => {
+            const figure = trigger.closest('figure');
+            const image = $('.story-image', figure);
+            const caption = $('figcaption', figure);
+
+            if (!image || !caption) return;
+            
+            lastFocusedElement = document.activeElement;
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = caption.textContent;
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        };
+
+        const closeLightbox = () => {
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            lastFocusedElement?.focus();
+        };
+
+        $$('.enlarge-btn').forEach(btn => {
+            btn.addEventListener('click', () => openLightbox(btn));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        window.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape') {
+            if ($('#shortcuts-modal')?.getAttribute('aria-hidden') === 'false') {
+              $('#close-shortcuts').click();
+            } else if (lightbox.getAttribute('aria-hidden') === 'false') {
+              closeLightbox();
+            }
+          }
+        });
+    },
+
+    preventImageRightClick() {
+        $$('.story-image').forEach(img => {
+            img.addEventListener('contextmenu', e => e.preventDefault());
+        });
     }
-    this.dom.pollResults.innerHTML = resultHTML;
-  }
-  showInlinePollResults(value) { const labels = { enforcement: 'Law Enforcement', treatment: 'Treatment Services', prevention: 'Prevention Programs' }; this.dom.priorVoteText.textContent = `You previously voted for: ${labels[value] || value}`; this.dom.pollResultsInline.classList.remove('hidden'); }
+  };
 
-  initDonationBanner() { if (this.isBannerDismissed()) this.dom.donationBanner?.classList.add('hidden'); }
-  dismissDonationBanner() { this.dom.donationBanner.classList.add('hidden'); const expiry = new Date(); expiry.setDate(expiry.getDate() + 30); try { localStorage.setItem('donationBannerDismissed', expiry.toISOString()); } catch (e) { console.warn('Could not save banner dismissal'); } }
-  isBannerDismissed() { const dismissedUntil = localStorage.getItem('donationBannerDismissed'); return dismissedUntil && new Date() < new Date(dismissedUntil); }
-  handleDonation() { alert('Thank you for your support! Please find donation details in the footer of the page.'); }
-
-  initSocialSharing() {
-    const pageUrl = window.location.href.split('#')[0];
-    const pageTitle = "The Shadow War: Unpacking Sri Lanka's Drug Crisis";
-    const services = {
-        twitter: { icon: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>', url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}` },
-        linkedin: { icon: '<svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>', url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(pageTitle)}` }
-    };
-    // Project-level sharing
-    this.dom.projectShareContainer.innerHTML = Object.values(services).map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="share-btn">${s.icon}</a>`).join('');
-    // Per-image sharing
-    this.dom.shareIconsContainer.innerHTML = Object.keys(services).map(key => `<button class="share-btn" data-service="${key}" aria-label="Share on ${key}">${services[key].icon}</button>`).join('');
-    this.dom.shareIconsContainer.addEventListener('click', (e) => {
-      const button = e.target.closest('.share-btn');
-      if (!button) return;
-      const service = button.dataset.service;
-      const stepTitle = this.dom.steps[this.currentStep].querySelector('h2').textContent;
-      const shareText = `Check out this visual on "${stepTitle}" from The Shadow War:`;
-      const shareUrl = `${pageUrl}#step-${this.currentStep}`;
-      let url;
-      if (service === 'twitter') url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
-      if (service === 'linkedin') url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(pageTitle)}&summary=${encodeURIComponent(shareText)}`;
-      if (url) window.open(url, '_blank', 'width=600,height=400');
-    });
+  /* ---------- 4. INITIALIZE APP ---------- */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => App.init());
+  } else {
+    App.init();
   }
-  updateShareIcons(stepIndex) { /* This function can be used to dynamically change icons if needed, but current setup is static. */ }
-  
-  initCopyBibTeX() { this.dom.copyBibTeXBtn?.addEventListener('click', async () => { try { await navigator.clipboard.writeText(this.dom.bibtexContent.textContent.trim()); const originalText = this.dom.copyBibTeXBtn.textContent; this.dom.copyBibTeXBtn.textContent = 'Copied!'; this.dom.copyBibTeXBtn.disabled = true; setTimeout(() => { this.dom.copyBibTeXBtn.textContent = originalText; this.dom.copyBibTeXBtn.disabled = false; }, 2000); } catch (err) { console.error('Failed to copy text: ', err); } }); }
-  setupFocusTrap() { const focusable = this.dom.pollModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'); const first = focusable[0]; const last = focusable[focusable.length - 1]; first?.focus(); this.focusTrapHandler = (e) => { if (e.key !== 'Tab') return; if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); } else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); } }; document.addEventListener('keydown', this.focusTrapHandler); }
-}
-document.addEventListener('DOMContentLoaded', () => new DrugDataStory());
+
+})();
