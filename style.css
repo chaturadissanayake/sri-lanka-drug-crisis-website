@@ -89,33 +89,6 @@ img, svg { max-width: 100%; height: auto; display: block; }
 a { color: var(--accent-2); text-decoration: none; }
 a:hover { text-decoration: underline; text-decoration-thickness: 1.5px; }
 
-/* Skip link & Screen reader announcer */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--accent);
-  color: white;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 500;
-  z-index: 10001;
-  transition: top 0.2s ease;
-}
-.skip-link:focus { top: 6px; }
-
-.sr-announcer {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
 /* Typography */
 h1, h2, h3, h4 {
   font-family: "Playfair Display", "Georgia", serif;
@@ -865,3 +838,4 @@ figcaption {
   .story-image { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .end-content-wrapper { display: block !important; }
 }
+
