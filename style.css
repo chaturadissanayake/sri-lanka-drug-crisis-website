@@ -276,7 +276,6 @@ html[data-theme="high-contrast"] .stat-number { text-shadow: 0 0 5px var(--bg); 
   font-size: 0.875rem;
   color: var(--ink-mute);
   margin-top: 0.25rem;
-  max-width: 120px;
   text-align: center;
 }
 
@@ -315,6 +314,7 @@ html[data-theme="high-contrast"] .stat-number { text-shadow: 0 0 5px var(--bg); 
 .takeaways-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    counter-reset: takeaway-counter;
 }
 .takeaway-card {
     background: var(--bg-soft);
@@ -349,8 +349,10 @@ html[data-theme="high-contrast"] .stat-number { text-shadow: 0 0 5px var(--bg); 
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
+    counter-increment: takeaway-counter;
 }
-.takeaway-icon {
+.takeaway-header::before {
+    content: "0" counter(takeaway-counter);
     flex-shrink: 0;
     width: 44px;
     height: 44px;
@@ -359,10 +361,9 @@ html[data-theme="high-contrast"] .stat-number { text-shadow: 0 0 5px var(--bg); 
     background-color: var(--bg-elev);
     border-radius: var(--radius-sm);
     color: var(--accent);
-}
-.takeaway-icon .icon {
-    width: 26px;
-    height: 26px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 .takeaway-card h3 {
     font-family: 'Inter', sans-serif;
@@ -810,6 +811,7 @@ figcaption {
   .tab-buttons { flex-direction: column; align-items: stretch; }
   .data-download-links { flex-direction: column; }
   .figure-actions { flex-direction: column; align-items: stretch; }
+  .lightbox-close { top: 0.5rem; right: 0.5rem; }
 }
 
 
@@ -838,4 +840,3 @@ figcaption {
   .story-image { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .end-content-wrapper { display: block !important; }
 }
-
