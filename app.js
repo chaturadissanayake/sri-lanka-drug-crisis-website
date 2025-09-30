@@ -1,9 +1,7 @@
 /* =========================================================
-   THE SHADOW WAR — V6.1 APP.JS (ENHANCED REDESIGN)
-   - Fixed floating point animation bug
-   - Added URL hash handling on initial load
-   - Improved accessibility (screen reader announcements, ticker focus)
-   - Enhanced UI feedback and interaction logic
+   THE SHADOW WAR — V6.5 APP.JS (IMPROVED UX & BUGFIXES)
+   - Patched lightbox to correctly load high-res WebP images
+   - Refined scrollytelling pacing and animations
    ========================================================= */
 
 (function() {
@@ -24,9 +22,6 @@
     comment: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
     download: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
     share: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>`,
-    arrests: `<svg class="icon" stroke-width="1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.622 3.393l-1.98 1.98m-3.96 0L6.702 3.393m9.9 0a7.5 7.5 0 00-9.9 0m9.9 0l1.98 1.98m-13.86 0L4.722 3.393m0 0a7.5 7.5 0 009.9 0M4.722 5.373a7.5 7.5 0 007.5 9.252 7.5 7.5 0 007.5-9.252" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.75 12h.75m15 0h.75M9 14.25c0 .966.784 1.75 1.75 1.75h2.5A1.75 1.75 0 0015 14.25v-2.5c0-.966-.784-1.75-1.75-1.75h-2.5A1.75 1.75 0 009 11.75v2.5zM12 21v-3.75" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
-    meth: `<svg class="icon" stroke-width="1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15.58 15.21l-3.93 3.93a.92.92 0 01-1.3 0l-3.93-3.93a.92.92 0 010-1.3l3.93-3.93a.92.92 0 011.3 0l3.93 3.93c.36.36.36.94 0 1.3zM18 6l-2.5 2.5M18 6h-3.5M18 6V2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
-    geo: `<svg class="icon" stroke-width="1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10.5c0 4.97-9 13.5-9 13.5s-9-8.53-9-13.5C3 5.03 7.03 1 12 1s9 4.03 9 9.5z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke-linecap="round" stroke-linejoin="round"></path></svg>`
   };
 
   /* ---------- 2. UTILITIES ---------- */
@@ -47,11 +42,10 @@
           setTimeout(() => {
               toast.classList.remove('show');
               setTimeout(() => document.body.removeChild(toast), 300);
-          }, 3500); // Increased duration
+          }, 3500);
       }, 10);
   };
 
-  // FIX: Handles floating point numbers correctly
   const animateValue = (element, start, end, duration, formatter) => {
     let startTime = null;
     const step = (currentTime) => {
@@ -82,15 +76,15 @@
       this.preventImageRightClick();
       this.initKeyboardNavigation();
       this.initBackToTopButton();
-      this.handleInitialHash(); // Handle deep links on load
+      this.handleInitialHash();
     },
 
     initComponents() {
-      const announcer = $('.sr-announcer');
-
       // --- Theme Toggle ---
       const themeBtn = $('#theme-toggle');
       const themes = ['dark', 'light', 'high-contrast'];
+      const announcer = $('.sr-announcer');
+
       if (themeBtn) {
         themeBtn.innerHTML = ICONS.moon + ICONS.sun + ICONS.contrast;
         let currentThemeIndex = themes.indexOf(localStorage.getItem('theme') || 'dark');
@@ -128,7 +122,6 @@
         ];
         ticker.innerHTML = [...items, ...items].map(t => `<span class="ticker-item">${t}</span>`).join('');
         const container = $('#news-ticker-container');
-        // A11y: Pause on focus as well as hover
         container?.addEventListener('mouseenter', () => ticker.classList.add('paused'));
         container?.addEventListener('mouseleave', () => ticker.classList.remove('paused'));
         container?.addEventListener('focusin', () => ticker.classList.add('paused'));
@@ -160,7 +153,6 @@
 
       if (steps.length === 0) return;
       
-      // 1. Build side & footer navigation
       let navListHTML = '', footerNavHTML = '';
       steps.forEach(step => {
         const id = step.id;
@@ -175,7 +167,6 @@
       if(navContainer) navContainer.innerHTML = `<ul>${navListHTML}</ul>`;
       if(footerNavContainer) footerNavContainer.innerHTML = footerNavHTML;
 
-      // 2. Observer for activating charts and nav items
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const id = entry.target.id;
@@ -183,18 +174,19 @@
           const footerNavItem = $(`a[href="#${id}"]`, footerNavContainer);
 
           if (entry.isIntersecting) {
-            this.currentStep = parseInt(entry.target.dataset.step);
+            const stepIndex = parseInt(entry.target.dataset.step, 10);
+            if (!isNaN(stepIndex)) {
+              this.currentStep = stepIndex;
+            }
             
             $$('.step').forEach(s => s.classList.remove('active'));
             entry.target.classList.add('active');
             
-            // Activate corresponding visual element
             $(`[data-visual="${entry.target.dataset.step}"]`)?.classList.add('is-visible');
             
-            // Update side and footer nav active states
             $$('.scrolly-nav-item', navContainer).forEach(item => {
               item.classList.remove('active');
-              $('a', item).removeAttribute('aria-current');
+              $('a', item)?.removeAttribute('aria-current');
             });
             $$('a', footerNavContainer).forEach(a => a.classList.remove('active'));
 
@@ -202,9 +194,9 @@
             $('a', navItem)?.setAttribute('aria-current', 'true');
             footerNavItem?.classList.add('active');
             
-            // Sync URL with active section without polluting history
             history.replaceState(null, '', `#${id}`);
           } else {
+            entry.target.classList.remove('active');
             $(`[data-visual="${entry.target.dataset.step}"]`)?.classList.remove('is-visible');
           }
         });
@@ -215,7 +207,7 @@
 
     initInteractions() {
       const announcer = $('.sr-announcer');
-      // --- Citation Tabs ---
+
       $('.citation-tabs')?.addEventListener('click', (e) => {
         const clickedTab = e.target.closest('.tab-button');
         if (!clickedTab) return;
@@ -230,7 +222,6 @@
         $(`#${clickedTab.getAttribute('aria-controls')}`)?.classList.add('active');
       });
 
-      // --- Copy-to-Clipboard ---
       $$('.copy-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const target = $(btn.dataset.clipboardTarget);
@@ -253,7 +244,6 @@
         });
       });
 
-      // --- Data Download ---
       $$('.data-download-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const dataset = btn.dataset.download;
@@ -261,7 +251,6 @@
         });
       });
       
-      // --- Share Section ---
       $$('.share-section-btn').forEach(btn => {
           btn.addEventListener('click', async () => {
               const section = btn.closest('.step');
@@ -291,7 +280,6 @@
           });
       });
 
-      // --- Share & Social Icons ---
       const shareContainer = $('#project-share-buttons');
       if (shareContainer) {
         const shareUrl = "https://chaturadissanayake.github.io/the-shadow-war/";
@@ -310,7 +298,6 @@
         `;
       }
       
-      // --- Community Feedback Toggle ---
       $$('.feedback-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const panel = $(`#${btn.getAttribute('aria-controls')}`);
@@ -321,7 +308,6 @@
         });
       });
 
-      // --- Keyboard Shortcuts Modal ---
       const shortcutsModal = $('#shortcuts-modal');
       if (shortcutsModal) {
         const openShortcutsModal = () => this.openModal(shortcutsModal);
@@ -336,7 +322,7 @@
     },
     
     initAnimations() {
-      // --- Appear on Scroll ---
+      // General fade-in animations for sections
       const elements = $$('.animate-on-scroll');
       if (elements.length > 0) {
         const observer = new IntersectionObserver((entries) => {
@@ -350,33 +336,42 @@
         elements.forEach(el => observer.observe(el));
       }
 
-      // --- Animate Hero Stats ---
-      const heroStats = $('.hero-stats');
-      if (heroStats) {
-          const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                      const statArrests = $('#stat-arrests');
-                      const statTreatment = $('#stat-treatment');
-                      const statRatio = $('#stat-ratio');
-                      
-                      if (statArrests && !statArrests.dataset.animated) {
-                          statArrests.dataset.animated = 'true';
-                          animateValue(statArrests, 0, 160000, 2000, val => val.toLocaleString(undefined, {maximumFractionDigits: 0}));
-                      }
-                      if (statTreatment && !statTreatment.dataset.animated) {
-                          statTreatment.dataset.animated = 'true';
-                          animateValue(statTreatment, 0, 2600, 1800, val => val.toLocaleString(undefined, {maximumFractionDigits: 0}));
-                      }
-                      if (statRatio && !statRatio.dataset.animated) {
-                          statRatio.dataset.animated = 'true';
-                          animateValue(statRatio, 0, 1.6, 1900, val => `${val.toFixed(1)}%`);
-                      }
-                      observer.unobserve(entry.target);
-                  }
-              });
-          }, { threshold: 0.5 });
-          observer.observe(heroStats);
+      // Animate Big Stats when they enter view
+      const statObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            const statEl = $('.stat-number-large', target);
+            if (statEl && !statEl.dataset.animated) {
+              statEl.dataset.animated = 'true';
+              switch (statEl.id) {
+                case 'animated-arrests':
+                  animateValue(statEl, 0, 160000, 2000, val => Math.round(val).toLocaleString('en-US'));
+                  break;
+                case 'animated-treatment':
+                  animateValue(statEl, 0, 2600, 1800, val => Math.round(val).toLocaleString('en-US'));
+                  break;
+                case 'animated-ratio':
+                  animateValue(statEl, 0, 1.6, 1900, val => `${val.toFixed(1)}%`);
+                  break;
+              }
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      $$('.stat-step').forEach(step => statObserver.observe(step));
+      
+      // Animate "In Brief" cards
+      const takeaways = $('.takeaways-grid');
+      if (takeaways) {
+          const takeawayObserver = new IntersectionObserver(entries => {
+              if (entries[0].isIntersecting) {
+                  takeaways.classList.add('is-visible');
+                  takeawayObserver.unobserve(takeaways);
+              }
+          }, { threshold: 0.2 });
+          takeawayObserver.observe(takeaways);
       }
     },
 
@@ -384,24 +379,39 @@
         const lightbox = $('#image-lightbox');
         if (!lightbox) return;
         const closeBtn = $('#close-lightbox');
+        const lightboxContent = $('.lightbox-content', lightbox);
 
         $$('.enlarge-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const figure = btn.closest('figure');
+                const basename = figure.dataset.basename;
                 const image = $('.story-image', figure);
-                const caption = $('figcaption', figure);
-                if (!image || !caption) return;
+
+                if (!basename || !image) {
+                  console.error('Could not find basename or image for lightbox.');
+                  return;
+                }
                 
-                // Use the highest resolution available (2700px version)
-                const highResSrc = image.src.replace(/(\d+)\.(png|jpg|webp)$/, '2700.$2');
-                $('.lightbox-image', lightbox).src = highResSrc;
-                $('.lightbox-image', lightbox).alt = image.alt;
-                $('.lightbox-caption', lightbox).textContent = caption.textContent;
+                // FIXED: Dynamically create picture element for robust format support
+                lightboxContent.innerHTML = `
+                  <picture>
+                    <source type="image/webp" srcset="assets/${basename}-2700.webp">
+                    <img src="assets/${basename}-2700.png" alt="${image.alt}" class="lightbox-image">
+                  </picture>
+                `;
+
                 this.openModal(lightbox);
             });
         });
 
-        const closeLightbox = () => this.closeModal(lightbox);
+        const closeLightbox = () => {
+            this.closeModal(lightbox);
+            // Clear content after closing transition to prevent flash of old image
+            setTimeout(() => {
+                lightboxContent.innerHTML = '';
+            }, 300);
+        };
+
         closeBtn.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
     },
@@ -412,13 +422,14 @@
         document.body.style.overflow = 'hidden';
 
         const focusableElements = $$('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])', modal)
-            .filter(el => !el.hasAttribute('disabled'));
-        this.firstFocusable = focusableElements[0];
-        this.lastFocusable = focusableElements[focusableElements.length - 1];
+            .filter(el => !el.hasAttribute('disabled') && el.offsetWidth > 0 && el.offsetHeight > 0);
         
-        this.firstFocusable?.focus();
+        if(focusableElements.length > 0) {
+          this.firstFocusable = focusableElements[0];
+          this.lastFocusable = focusableElements[focusableElements.length - 1];
+          this.firstFocusable.focus();
+        }
         
-        // FIX: Remove redundant event listener binding
         modal._focusTrapHandler = this.trapFocus.bind(this);
         modal.addEventListener('keydown', modal._focusTrapHandler);
     },
@@ -433,13 +444,13 @@
     },
     
     trapFocus(e) {
-        if (e.key !== 'Tab') return;
-        if (e.shiftKey) { // Shift + Tab
+        if (e.key !== 'Tab' || !this.firstFocusable) return;
+        if (e.shiftKey) {
             if (document.activeElement === this.firstFocusable) {
                 this.lastFocusable.focus();
                 e.preventDefault();
             }
-        } else { // Tab
+        } else {
             if (document.activeElement === this.lastFocusable) {
                 this.firstFocusable.focus();
                 e.preventDefault();
@@ -448,7 +459,11 @@
     },
 
     preventImageRightClick() {
-        $$('.story-image, .lightbox-image').forEach(img => img.addEventListener('contextmenu', e => e.preventDefault()));
+        document.body.addEventListener('contextmenu', e => {
+            if (e.target.matches('.story-image, .lightbox-image')) {
+                e.preventDefault();
+            }
+        });
     },
     
     initKeyboardNavigation() {
@@ -462,8 +477,8 @@
           case 'k': case 'ArrowUp':
             e.preventDefault(); this.navigateToStep(this.currentStep - 1); break;
           case 'Escape':
-            if ($('#shortcuts-modal')?.getAttribute('aria-hidden') === 'false') this.closeModal($('#shortcuts-modal'));
-            else if ($('#image-lightbox')?.getAttribute('aria-hidden') === 'false') this.closeModal($('#image-lightbox'));
+            if ($('#image-lightbox')?.getAttribute('aria-hidden') === 'false') this.closeModal($('#image-lightbox'));
+            else if ($('#shortcuts-modal')?.getAttribute('aria-hidden') === 'false') this.closeModal($('#shortcuts-modal'));
             break;
         }
       });
@@ -471,7 +486,10 @@
     
     navigateToStep(stepIndex) {
       if (stepIndex < 0 || stepIndex >= this.totalSteps) return;
-      $$('.step')[stepIndex]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const targetStep = $$('.step')[stepIndex];
+      if (targetStep) {
+          targetStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     },
     
     initBackToTopButton() {
@@ -496,15 +514,16 @@
         if (hash) {
             const targetStep = $(hash);
             if (targetStep && targetStep.classList.contains('step')) {
+                // Using setTimeout ensures that any initial layout shifts are settled
                 setTimeout(() => {
                     targetStep.scrollIntoView({ behavior: 'auto', block: 'center' });
-                }, 100);
+                }, 150);
             }
         }
     },
     
     downloadDataset(datasetName) {
-      let data, filename, mimeType = 'text/csv';
+      let data, filename, mimeType = 'text/csv;charset=utf-8;';
       
       const datasets = {
           'arrests-vs-treatment': "Year,Arrests,Treatment\n2018,45000,2200\n2019,52000,2400\n2020,68000,2100\n2021,89000,2300\n2022,125000,2500\n2023,160000,2600",
@@ -538,6 +557,10 @@
   };
 
   /* ---------- 4. INITIALIZE APP ---------- */
-  document.addEventListener('DOMContentLoaded', () => App.init());
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => App.init());
+  } else {
+    App.init();
+  }
 
 })();
