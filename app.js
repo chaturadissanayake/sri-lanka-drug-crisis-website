@@ -142,9 +142,6 @@
       $$('.copy-btn').forEach(btn => {
         btn.innerHTML += `<span class="copy-icon">${ICONS.copy}</span><span class="tooltip-text">Copied!</span>`;
       });
-      $('#icon-arrests')?.insertAdjacentHTML('beforeend', ICONS.arrests);
-      $('#icon-meth')?.insertAdjacentHTML('beforeend', ICONS.meth);
-      $('#icon-geo')?.insertAdjacentHTML('beforeend', ICONS.geo);
       $$('.feedback-icon').forEach(el => el.innerHTML = ICONS.comment);
       $$('.download-icon').forEach(el => el.innerHTML = ICONS.download);
       $$('.share-icon').forEach(el => el.innerHTML = ICONS.share);
