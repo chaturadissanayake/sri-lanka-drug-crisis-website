@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en-GB" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,7 +42,7 @@
     "headline": "The Shadow War: Unpacking Sri Lanka's Drug Crisis Through Arrests, Seizures, and Treatment",
     "image": "https://chaturadissanayake.github.io/the-shadow-war/assets/og-cover.jpg",
     "datePublished": "2025-09-30T09:00:00+05:30",
-    "dateModified": "2025-09-30T09:00:00+05:30",
+    "dateModified": "2025-10-01T09:00:00+05:30",
     "author": {
       "@type": "Person",
       "name": "Chatura Dissanayake"
@@ -60,23 +60,28 @@
   <div class="sr-announcer" aria-live="polite"></div>
   <div id="scroll-progress-bar" aria-hidden="true"></div>
 
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme"></button>
+  <div class="floating-buttons">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme"></button>
+      <button id="open-shortcuts-btn" class="shortcuts-btn" aria-label="Show keyboard shortcuts">?</button>
+  </div>
 
   <nav id="scrolly-nav" aria-label="Story sections"></nav>
   
-  <div class="header-meta">
-    <p class="last-updated-ticker">Updated: September 30, 2025</p>
-  </div>
-  <section id="news-ticker-container" aria-label="Latest Updates">
-    <div class="ticker-wrap">
-      <div id="news-ticker" aria-live="off"></div>
+  <div class="site-header-sticky">
+    <div class="header-meta">
+      <p class="last-updated-ticker">Updated: 1 October 2025</p>
     </div>
-  </section>
+    <section id="news-ticker-container" aria-label="Latest Updates">
+      <div class="ticker-wrap">
+        <div id="news-ticker" aria-live="off"></div>
+      </div>
+    </section>
+  </div>
 
   <header id="intro-screen" role="banner" class="container" aria-labelledby="main-headline">
     <div class="hero-content">
       <h1 id="main-headline" class="main-headline fade-in">The Shadow War</h1>
-      <h2 class="subtitle fade-in">Unpacking Sri Lanka's Drug Crisis Through Arrests, Seizures, and Treatment</h2>
+      <h2 class="subtitle fade-in">Sri Lanka's Drug Crisis, Told Through Data</h2>
       <p class="byline fade-in">Chatura Dissanayake, Information Designer</p>
       <a href="#stat-arrests" class="scroll-prompt fade-in" aria-label="Scroll to begin">
         <span>Scroll to Begin</span>
@@ -89,25 +94,25 @@
 
     <section id="stat-arrests" class="step stat-step" data-step="0" data-title="Arrests">
         <div class="stat-content">
-            <span id="animated-arrests" class="stat-number-large" aria-label="160,000">0</span>
-            <h2 class="stat-label-large">Drug-Related Arrests in 2023 Alone</h2>
-            <p class="stat-description">A record-breaking figure that highlights the sheer scale of law enforcement's focus on the crisis.</p>
+            <span id="animated-arrests" class="stat-number-large" aria-label="162,088">0</span>
+            <h2 class="stat-label-large">Drug-Related Arrests in 2023</h2>
+            <p class="stat-description">This record-breaking figure reveals the immense scale of law enforcement's focus on the drug crisis.</p>
         </div>
     </section>
 
     <section id="stat-treatment" class="step stat-step" data-step="1" data-title="Treatment">
         <div class="stat-content">
-            <span id="animated-treatment" class="stat-number-large" aria-label="2,600">0</span>
-            <h2 class="stat-label-large">Individuals Entered Treatment</h2>
-            <p class="stat-description">In stark contrast to arrests, the number of people accessing rehabilitation services remains critically low.</p>
+            <span id="animated-treatment" class="stat-number-large" aria-label="1,894">0</span>
+            <h2 class="stat-label-large">People Entered Treatment</h2>
+            <p class="stat-description">In sharp contrast, the number of individuals accessing rehabilitation services remains critically low.</p>
         </div>
     </section>
 
     <section id="stat-ratio" class="step stat-step" data-step="2" data-title="The Gap">
         <div class="stat-content">
-            <span id="animated-ratio" class="stat-number-large" aria-label="1.6 percent">0%</span>
+            <span id="animated-ratio" class="stat-number-large" aria-label="1.2 percent">0%</span>
             <h2 class="stat-label-large">Of those arrested gained access to treatment.</h2>
-            <p class="stat-description">This stark ratio reveals a profound imbalance between punitive measures and public health support.</p>
+            <p class="stat-description">This stark ratio uncovers a profound imbalance between punishment and public health support.</p>
         </div>
     </section>
 
@@ -117,21 +122,24 @@
             <div class="takeaways-grid">
                 <div class="takeaway-card">
                     <div class="takeaway-header">
-                        <h3>Arrests Outpace Treatment</h3>
+                        <span class="takeaway-number">01</span>
+                        <h3>Arrests Vastly Outpace Treatment</h3>
                     </div>
-                    <p>Enforcement has scaled dramatically, hitting record highs. In contrast, access to treatment has stagnated, creating a significant gap between the punitive response and public health support.</p>
+                    <p>Enforcement has scaled dramatically to record highs. Meanwhile, access to treatment has stagnated, creating a huge gap between the nation's punitive response and its public health support.</p>
                 </div>
                 <div class="takeaway-card">
                      <div class="takeaway-header">
+                        <span class="takeaway-number">02</span>
                         <h3>Methamphetamine on the Rise</h3>
                     </div>
-                    <p>While heroin and cannabis remain prevalent, the sharp increase in methamphetamine ('ice') arrests marks a structural shift in the drug market, posing new challenges for law enforcement and healthcare providers.</p>
+                    <p>While heroin and cannabis remain prevalent, a sharp increase in methamphetamine ('ice') arrests signals a structural shift in the drug market, posing new challenges for law enforcement and healthcare providers.</p>
                 </div>
                 <div class="takeaway-card">
                     <div class="takeaway-header">
-                        <h3>Geographic Disparities</h3>
+                        <span class="takeaway-number">03</span>
+                        <h3>Deep Geographic Divides</h3>
                     </div>
-                    <p>The Western Province is the crisis's epicentre, but many regional districts face a dual challenge: rising drug-related issues combined with a severe lack of accessible treatment facilities, amplifying harm in underserved communities.</p>
+                    <p>The Western Province is the crisis's epicentre, but many districts face a dual challenge: rising drug issues combined with a severe lack of accessible treatment, amplifying harm in underserved communities.</p>
                 </div>
             </div>
         </div>
@@ -141,28 +149,28 @@
         <article class="story-content container">
             <section id="chart-arrests-treatment" class="step" data-step="4" data-title="Arrests vs Treatment">
                 <div class="prose">
-                  <h3 class="step-kicker">Context</h3>
-                  <h2>Arrests Surged While Treatment Stalled</h2>
-                  <p class="lead">This opening visual frames the crisis: enforcement scaled quickly and visibly, while access to treatment remained critically low. The vast number of arrests dwarfs the number of individuals entering rehabilitation, signalling a system prioritising punishment over public health.</p>
+                  <h3 class="step-kicker">The Core Imbalance</h3>
+                  <h2>A Widening Chasm</h2>
+                  <p class="lead">This chart reveals the central tension in Sri Lanka's drug policy. Drug-related arrests have soared, while the number of people entering treatment has remained critically low. This disparity shows a system that heavily prioritises punishment over public health and recovery.</p>
                 </div>
                 <figure class="chart-container" data-visual="4" data-basename="chart-arrests-vs-treatment" role="group" aria-labelledby="caption-arrests-treatment">
                   <div class="image-wrapper">
                     <picture>
                       <source type="image/webp" srcset="assets/chart-arrests-vs-treatment-640.webp 640w, assets/chart-arrests-vs-treatment-960.webp 960w, assets/chart-arrests-vs-treatment-1350.webp 1350w, assets/chart-arrests-vs-treatment-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="eager" fetchpriority="high" src="assets/chart-arrests-vs-treatment.png" srcset="assets/chart-arrests-vs-treatment-640.png 640w, assets/chart-arrests-vs-treatment-960.png 960w, assets/chart-arrests-vs-treatment-1350.png 1350w, assets/chart-arrests-vs-treatment-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A dot plot chart where a massive cluster of orange dots representing 160,000 drug arrests in 2023 overwhelms a tiny group of blue dots representing 2,600 treatment entries, visually demonstrating the huge disparity." />
+                      <img class="story-image" loading="eager" fetchpriority="high" src="assets/chart-arrests-vs-treatment.png" srcset="assets/chart-arrests-vs-treatment-640.png 640w, assets/chart-arrests-vs-treatment-960.png 960w, assets/chart-arrests-vs-treatment-1350.png 1350w, assets/chart-arrests-vs-treatment-2700.png 2700w" alt="A dot plot chart where a massive cluster of orange dots representing 162,088 drug arrests in 2023 overwhelms a tiny group of blue dots representing 1,894 treatment entries, demonstrating the huge disparity." />
                     </picture>
                   </div>
-                  <figcaption id="caption-arrests-treatment">Each orange dot represents approximately 1,000 arrests; each blue dot represents 100 people entering treatment. The disparity highlights a policy imbalance. Data source: NDDCB Annual Reports 2018-2023.</figcaption>
+                  <figcaption id="caption-arrests-treatment">Each orange dot represents 1,000 arrests; each blue dot represents 100 people in treatment. The visual gap highlights a persistent policy imbalance. Data: NDDCB Annual Reports (2018–2023).</figcaption>
                   <div class="figure-actions">
                       <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                       <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-0"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="arrests-vs-treatment" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                   </div>
                   <div class="feedback-panel" id="feedback-0" role="region" hidden>
                       <h4>Community Feedback</h4>
                       <div class="feedback-comment">
-                          <p>"This chart is powerful, but it took me a moment to realize the orange and blue dots represent different scales (1,000 vs. 100). A clearer visual distinction could make the disparity even more immediately obvious."</p>
+                          <p>"This chart is powerful, but it took me a moment to realise the orange and blue dots represent different scales (1,000 vs. 100). A clearer visual distinction could make the disparity even more immediately obvious."</p>
                           <cite class="feedback-author">Public Health Researcher</cite>
                       </div>
                   </div>
@@ -171,29 +179,29 @@
         
             <section id="chart-substances" class="step" data-step="5" data-title="Arrests by Substance">
                 <div class="prose">
-                  <h3 class="step-kicker">Patterns</h3>
-                  <h2>The Shifting Substance Landscape</h2>
-                  <p class="lead">A breakdown of arrests by substance reveals the evolving nature of the drug market. While heroin and cannabis remain dominant, the rapid emergence of methamphetamine (ice) signifies a structural shift that reshapes law enforcement priorities and public health challenges.</p>
+                  <h3 class="step-kicker">The Shifting Market</h3>
+                  <h2>From Heroin to 'Ice'</h2>
+                  <p class="lead">A breakdown of arrests by substance reveals an evolving crisis. While heroin and cannabis have long dominated, the rapid emergence of methamphetamine ('ice') signals a fundamental shift in the drug market. This trend creates new public health challenges and reshapes law enforcement priorities.</p>
                 </div>
                 <figure class="chart-container" data-visual="5" data-basename="chart-arrests-by-substance" role="group" aria-labelledby="caption-substances">
                   <div class="image-wrapper">
                     <picture>
                       <source type="image/webp" srcset="assets/chart-arrests-by-substance-640.webp 640w, assets/chart-arrests-by-substance-960.webp 960w, assets/chart-arrests-by-substance-1350.webp 1350w, assets/chart-arrests-by-substance-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-arrests-by-substance.png" srcset="assets/chart-arrests-by-substance-640.png 640w, assets/chart-arrests-by-substance-960.png 960w, assets/chart-arrests-by-substance-1350.png 1350w, assets/chart-arrests-by-substance-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A radial bar chart showing arrests by substance from 2018 to 2023. Cannabis and heroin are the largest segments, but the methamphetamine slice grows noticeably larger in recent years." />
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-arrests-by-substance.png" srcset="assets/chart-arrests-by-substance-640.png 640w, assets/chart-arrests-by-substance-960.png 960w, assets/chart-arrests-by-substance-1350.png 1350w, assets/chart-arrests-by-substance-2700.png 2700w" alt="A radial bar chart showing arrests by substance from 2018 to 2023. Cannabis and heroin are the largest segments, but the methamphetamine slice grows noticeably larger in recent years." />
                     </picture>
                   </div>
-                  <figcaption id="caption-substances">The rise in methamphetamine arrests points to new trafficking networks and poses unique health risks requiring specialised treatment approaches. Data source: NDDCB Arrest Trends Report 2024.</figcaption>
+                  <figcaption id="caption-substances">The rise in methamphetamine arrests points to new trafficking networks and poses unique health risks that require specialised treatment approaches. Data: NDDCB Annual Reports (2018–2023).</figcaption>
                   <div class="figure-actions">
                       <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                       <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-1"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="arrests-by-substance" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                   </div>
                   <div class="feedback-panel" id="feedback-1" role="region" hidden>
                       <h4>Community Feedback</h4>
                       <div class="feedback-comment">
-                          <p>"I love the radial design, but the similar colors for each year make it a bit hard to compare trends at a glance. Maybe more distinct hues per year would help?"</p>
-                          <cite class="feedback-author">Data Visualization Student</cite>
+                          <p>"I love the radial design, but the similar colours for each year make it a bit hard to compare trends at a glance. Maybe more distinct hues per year would help?"</p>
+                          <cite class="feedback-author">Data Visualisation Student</cite>
                       </div>
                   </div>
                 </figure>
@@ -201,28 +209,28 @@
         
             <section id="chart-seizures" class="step" data-step="6" data-title="Seizures">
                 <div class="prose">
-                  <h3 class="step-kicker">Markets</h3>
-                  <h2>Seizures: A Story of Supply, Not Demand</h2>
-                  <p class="lead">Seizure data offers a window into law enforcement activity and trafficking routes, rather than the prevalence of use. Fluctuations in the streamgraph reflect successful interdictions, shifts in smuggling methods, and changing operational focus by police and customs.</p>
+                  <h3 class="step-kicker">Supply Chains</h3>
+                  <h2>A Story of Supply</h2>
+                  <p class="lead">Seizure data offers a glimpse into trafficking routes and law enforcement focus. This chart doesn't measure drug use; instead, it shows what authorities are targeting and successfully intercepting. Changes in the streams can reflect major crackdowns, new smuggling methods, or shifting police priorities.</p>
                 </div>
                 <figure class="chart-container" data-visual="6" data-basename="chart-seizures-stream" role="group" aria-labelledby="caption-seizures">
                   <div class="image-wrapper">
                     <picture>
                       <source type="image/webp" srcset="assets/chart-seizures-stream-640.webp 640w, assets/chart-seizures-stream-960.webp 960w, assets/chart-seizures-stream-1350.webp 1350w, assets/chart-seizures-stream-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-seizures-stream.png" srcset="assets/chart-seizures-stream-640.png 640w, assets/chart-seizures-stream-960.png 960w, assets/chart-seizures-stream-1350.png 1350w, assets/chart-seizures-stream-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A streamgraph showing quantities of seized drugs. The largest area is cannabis, followed by heroin, which peaks in 2023. A smaller but growing stream for methamphetamine is visible." />
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-seizures-stream.png" srcset="assets/chart-seizures-stream-640.png 640w, assets/chart-seizures-stream-960.png 960w, assets/chart-seizures-stream-1350.png 1350w, assets/chart-seizures-stream-2700.png 2700w" alt="A streamgraph showing quantities of seized drugs. The largest area is cannabis, followed by heroin. A smaller but growing stream for methamphetamine is visible." />
                     </picture>
                   </div>
-                  <figcaption id="caption-seizures">A spike in seizures may indicate a successful crackdown or a surge in supply. Conversely, a drop may mean traffickers have found new routes, not that the market has shrunk. Note: Quantities shown in kilograms. Data source: NDDCB Statistical Review 2024.</figcaption>
+                  <figcaption id="caption-seizures">A spike in seizures may indicate a successful operation or a surge in supply. A drop may simply mean traffickers have found new routes. Data: NDDCB Annual Reports (2018–2023).</figcaption>
                    <div class="figure-actions">
                       <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                       <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-2"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="seizures" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                   </div>
                   <div class="feedback-panel" id="feedback-2" role="region" hidden>
                       <h4>Community Feedback</h4>
                       <div class="feedback-comment">
-                          <p>"The streamgraph is visually interesting, but I found myself constantly checking the key to distinguish between the shades of blue. A more varied color palette would make it much easier to read."</p>
+                          <p>"The streamgraph is visually interesting, but I found myself constantly checking the key to distinguish between the shades of blue. A more varied colour palette would make it much easier to read."</p>
                           <cite class="feedback-author">Journalist</cite>
                       </div>
                        <div class="feedback-comment">
@@ -233,25 +241,85 @@
                 </figure>
             </section>
         
-            <section id="chart-rehab" class="step" data-step="7" data-title="Rehabilitation">
+            <section id="chart-policy" class="step" data-step="7" data-title="Policy & Presidents">
                 <div class="prose">
-                  <h3 class="step-kicker">Capacity</h3>
-                  <h2>A Fractured Rehabilitation System</h2>
-                  <p class="lead">The landscape of drug treatment and rehabilitation is divided among government bodies, prison-based programs, and non-governmental organisations. While the National Dangerous Drugs Control Board (NDDCB) leads, its capacity is dwarfed by the sheer scale of arrests, leaving significant gaps in care.</p>
+                  <h3 class="step-kicker">Political Influence</h3>
+                  <h2>The Rhythm of Crackdowns</h2>
+                  <p class="lead">Enforcement strategies are rarely neutral; they often reflect the political agendas of the day. This timeline shows how major crackdowns and shifts in arrest trends have coincided with different presidential administrations, linking policy changes to on-the-ground outcomes.</p>
                 </div>
-                <figure class="chart-container" data-visual="7" data-basename="chart-rehab-providers" role="group" aria-labelledby="caption-rehab">
+                <figure class="chart-container" data-visual="7" data-basename="chart-presidents" role="group" aria-labelledby="caption-policy">
+                  <div class="image-wrapper">
+                    <picture>
+                      <source type="image/webp" srcset="assets/chart-presidents-640.webp 640w, assets/chart-presidents-960.webp 960w, assets/chart-presidents-1350.webp 1350w, assets/chart-presidents-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-presidents.png" srcset="assets/chart-presidents-640.png 640w, assets/chart-presidents-960.png 960w, assets/chart-presidents-1350.png 1350w, assets/chart-presidents-2700.png 2700w" alt="A timeline chart showing drug arrests and seizures from 2018-2025 overlaid with bars representing presidential administrations. Arrests spike sharply under recent administrations." />
+                    </picture>
+                  </div>
+                  <figcaption id="caption-policy">Understanding the political context is key. A surge in arrests may reflect a genuine rise in drug activity or a politically motivated increase in policing. Data: NDDCB reports and author analysis.</figcaption>
+                  <div class="figure-actions">
+                      <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
+                      <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-4"><span class="feedback-icon"></span>Feedback</button>
+                  </div>
+                  <div class="feedback-panel" id="feedback-4" role="region" hidden>
+                      <h4>Community Feedback</h4>
+                      <div class="feedback-comment">
+                          <p>"This timeline visualisation is excellent. It effectively shows how enforcement priorities can shift dramatically with political leadership."</p>
+                          <cite class="feedback-author">Data Visualisation Enthusiast</cite>
+                      </div>
+                  </div>
+                </figure>
+            </section>
+            
+            <section id="chart-provincial-outcomes" class="step" data-step="8" data-title="Provincial Outcomes">
+                <div class="prose">
+                  <h3 class="step-kicker">Geographic Focus</h3>
+                  <h2>An Unbalanced Response</h2>
+                  <p class="lead">While the drug crisis is a national issue, the official response is not evenly distributed. This map reveals the Western Province as the undeniable epicentre of enforcement. Crucially, in every province, the overwhelming outcome for a drug-related case is prison, not treatment.</p>
+                </div>
+                <figure class="chart-container" data-visual="8" data-basename="chart-provincial-case-outcomes" role="group" aria-labelledby="caption-geo-outcomes">
+                  <div class="image-wrapper">
+                    <picture>
+                      <source type="image/webp" srcset="assets/chart-provincial-case-outcomes-640.webp 640w, assets/chart-provincial-case-outcomes-960.webp 960w, assets/chart-provincial-case-outcomes-1350.webp 1350w, assets/chart-provincial-case-outcomes-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-provincial-case-outcomes.png" srcset="assets/chart-provincial-case-outcomes-640.png 640w, assets/chart-provincial-case-outcomes-960.png 960w, assets/chart-provincial-case-outcomes-1350.png 1350w, assets/chart-provincial-case-outcomes-2700.png 2700w" alt="A bar chart combined with a map of Sri Lanka, showing drug case outcomes by province. The Western province has a vastly longer bar than any other, indicating a much higher number of cases." />
+                    </picture>
+                  </div>
+                  <figcaption id="caption-geo-outcomes">This data highlights potential 'treatment deserts'—areas with high enforcement but minimal support services, leaving vulnerable communities with few options. Data: NDDCB Trend Report 2024.</figcaption>
+                  <div class="figure-actions">
+                      <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
+                      <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-5"><span class="feedback-icon"></span>Feedback</button>
+                  </div>
+                  <div class="feedback-panel" id="feedback-5" role="region" hidden>
+                      <h4>Community Feedback</h4>
+                      <div class="feedback-comment">
+                          <p>"The map clearly and effectively illustrates the shocking geographic disparities in enforcement focus. Combining it with the bar chart is a smart choice."</p>
+                          <cite class="feedback-author">Public Health Analyst</cite>
+                      </div>
+                  </div>
+                </figure>
+            </section>
+            
+            <section id="chart-rehab" class="step" data-step="9" data-title="Rehabilitation Providers">
+                <div class="prose">
+                  <h3 class="step-kicker">Treatment Capacity</h3>
+                  <h2>Who Provides Rehabilitation?</h2>
+                  <p class="lead">Sri Lanka's treatment system is a mix of state-led centres, prison-based programmes, and community NGOs. While the state's NDDCB is the largest single provider, its centres handle just over half of all cases, revealing a fractured system where prisons play a major role in rehabilitation.</p>
+                </div>
+                <figure class="chart-container" data-visual="9" data-basename="chart-rehab-providers" role="group" aria-labelledby="caption-rehab">
                   <div class="image-wrapper">
                     <picture>
                       <source type="image/webp" srcset="assets/chart-rehab-providers-640.webp 640w, assets/chart-rehab-providers-960.webp 960w, assets/chart-rehab-providers-1350.webp 1350w, assets/chart-rehab-providers-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-rehab-providers.png" srcset="assets/chart-rehab-providers-640.png 640w, assets/chart-rehab-providers-960.png 960w, assets/chart-rehab-providers-1350.png 1350w, assets/chart-rehab-providers-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A treemap chart showing rehabilitation capacity. 'Prisons' is the largest block (1500), followed by 'NGOs' (1200) and 'Government (NDDCB)' (800)." />
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-rehab-providers.png" srcset="assets/chart-rehab-providers-640.png 640w, assets/chart-rehab-providers-960.png 960w, assets/chart-rehab-providers-1350.png 1350w, assets/chart-rehab-providers-2700.png 2700w" alt="A bubble chart showing the share of rehabilitation services. The largest bubble represents NDDCB Centres at 56% in 2023, followed by Prison-based Rehab (23%) and NGOs/Community (21%)." />
                     </picture>
                   </div>
-                  <figcaption id="caption-rehab">Limited capacity and long waitlists for NGO and NDDCB centres mean many individuals end up in prison-based programs, blurring the lines between healthcare and incarceration. Data source: NDDCB Treatment Handbook 2024.</figcaption>
+                  <figcaption id="caption-rehab">Limited capacity in dedicated centres means many individuals end up in prison programmes, blurring the lines between healthcare and incarceration. Data: NDDCB Annual Reports (2022–2023).</figcaption>
                    <div class="figure-actions">
                       <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                       <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-3"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="rehabilitation" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
                   </div>
                   <div class="feedback-panel" id="feedback-3" role="region" hidden>
                       <h4>Community Feedback</h4>
@@ -263,61 +331,31 @@
                 </figure>
             </section>
         
-            <section id="chart-policy" class="step" data-step="8" data-title="Policy Timeline">
+            <section id="chart-age-profile" class="step" data-step="10" data-title="Age & Gender Profile">
                 <div class="prose">
-                  <h3 class="step-kicker">Policy</h3>
-                  <h2>The Rhythm of Political Crackdowns</h2>
-                  <p class="lead">Enforcement intensity is not arbitrary; it ebbs and flows with political agendas, major policy shifts, and public pressure. This timeline correlates significant enforcement trends with the administrations and key legislative changes that drove them.</p>
+                  <h3 class="step-kicker">Demographics</h3>
+                  <h2>A Crisis of the Young</h2>
+                  <p class="lead">Who is seeking treatment? The data reveals a crisis that disproportionately affects young and middle-aged adults, with admissions peaking between the ages of 20 and 34. The gender data is even more stark: men make up over 99% of admissions, suggesting women may face significant and unseen barriers to accessing help.</p>
                 </div>
-                <figure class="chart-container" data-visual="8" data-basename="chart-presidents" role="group" aria-labelledby="caption-policy">
+                <figure class="chart-container" data-visual="10" data-basename="chart-treatment-admissions-by-age" role="group" aria-labelledby="caption-age">
                   <div class="image-wrapper">
                     <picture>
-                      <source type="image/webp" srcset="assets/chart-presidents-640.webp 640w, assets/chart-presidents-960.webp 960w, assets/chart-presidents-1350.webp 1350w, assets/chart-presidents-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-presidents.png" srcset="assets/chart-presidents-640.png 640w, assets/chart-presidents-960.png 960w, assets/chart-presidents-1350.png 1350w, assets/chart-presidents-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A timeline chart showing drug arrests from 2018-2023 overlaid with colored bands representing presidential administrations. Arrests spike sharply during 'Operation Yukthiya' under the Wickremesinghe administration." />
+                      <source type="image/webp" srcset="assets/chart-treatment-admissions-by-age-640.webp 640w, assets/chart-treatment-admissions-by-age-960.webp 960w, assets/chart-treatment-admissions-by-age-1350.webp 1350w, assets/chart-treatment-admissions-by-age-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
+                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-treatment-admissions-by-age.png" srcset="assets/chart-treatment-admissions-by-age-640.png 640w, assets/chart-treatment-admissions-by-age-960.png 960w, assets/chart-treatment-admissions-by-age-1350.png 1350w, assets/chart-treatment-admissions-by-age-2700.png 2700w" alt="A polar area chart showing treatment admissions by age group, with the largest segments for 20-24, 25-29, and 30-34 years. A separate bar chart shows that over 99% of admissions are male." />
                     </picture>
                   </div>
-                  <figcaption id="caption-policy">Understanding the policy context is crucial to distinguish between a genuine rise in drug activity and a politically motivated surge in policing. Data source: NDDCB Policy Analysis 2024.</figcaption>
+                  <figcaption id="caption-age">The high concentration of young adults in treatment highlights an urgent need for targeted prevention and early intervention programmes. Data: NDDCB Research Division, 2024.</figcaption>
                   <div class="figure-actions">
                       <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
-                      <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-4"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="policy-timeline" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
+                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share</button>
+                      <button class="data-download-btn" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
+                      <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-6"><span class="feedback-icon"></span>Feedback</button>
                   </div>
-                  <div class="feedback-panel" id="feedback-4" role="region" hidden>
+                   <div class="feedback-panel" id="feedback-6" role="region" hidden>
                       <h4>Community Feedback</h4>
                       <div class="feedback-comment">
-                          <p>"This timeline visualization is excellent. It effectively shows how enforcement priorities can shift dramatically with political leadership."</p>
-                          <cite class="feedback-author">Data Visualization Enthusiast</cite>
-                      </div>
-                  </div>
-                </figure>
-            </section>
-        
-            <section id="chart-geo" class="step" data-step="9" data-title="Geographic Hubs">
-                <div class="prose">
-                  <h3 class="step-kicker">Geography</h3>
-                  <h2>Where the Crisis Hits Hardest</h2>
-                  <p class="lead">While the Western Province is the undisputed epicenter of drug arrests, a granular geographic view reveals a more complex reality. Many regional districts face a dual crisis: rising drug-related harm combined with a severe lack of accessible treatment facilities.</p>
-                </div>
-                <figure class="chart-container" data-visual="9" data-basename="chart-provinces" role="group" aria-labelledby="caption-geo">
-                  <div class="image-wrapper">
-                    <picture>
-                      <source type="image/webp" srcset="assets/chart-provinces-640.webp 640w, assets/chart-provinces-960.webp 960w, assets/chart-provinces-1350.webp 1350w, assets/chart-provinces-2700.webp 2700w" sizes="(max-width: 1000px) 100vw, 900px">
-                      <img class="story-image" loading="lazy" decoding="async" src="assets/chart-provinces.png" srcset="assets/chart-provinces-640.png 640w, assets/chart-provinces-960.png 960w, assets/chart-provinces-1350.png 1350w, assets/chart-provinces-2700.png 2700w" sizes="(max-width: 1000px) 100vw, 900px" alt="A map of Sri Lanka where provinces are color-coded by arrest numbers. The Western Province is a deep, dark color, indicating over 120,000 arrests, while other provinces are much lighter shades." />
-                    </picture>
-                  </div>
-                  <figcaption id="caption-geo">Mapping arrests against treatment centers highlights "treatment deserts"—areas with high enforcement but minimal support, amplifying harm in vulnerable communities. Data source: NDDCB Geographic Analysis 2024.</figcaption>
-                  <div class="figure-actions">
-                      <button class="enlarge-btn" aria-label="Enlarge chart"><span class="enlarge-icon"></span>View Fullscreen</button>
-                      <button class="share-section-btn" aria-label="Share this section"><span class="share-icon"></span>Share Section</button>
-                      <button class="feedback-btn" aria-label="Show community feedback" aria-expanded="false" aria-controls="feedback-5"><span class="feedback-icon"></span>Feedback</button>
-                      <button class="data-download-btn" data-download="geographic" aria-label="Download chart data"><span class="download-icon"></span>Data</button>
-                  </div>
-                  <div class="feedback-panel" id="feedback-5" role="region" hidden>
-                      <h4>Community Feedback</h4>
-                      <div class="feedback-comment">
-                          <p>"The map clearly and effectively illustrates the shocking geographic disparities in both enforcement focus and treatment access."</p>
-                          <cite class="feedback-author">Public Health Analyst</cite>
+                          <p>"Very insightful. The near-total absence of women in the data is alarming—it likely points to massive hidden populations and barriers to treatment rather than a lack of need."</p>
+                          <cite class="feedback-author">Gender Policy Advisor</cite>
                       </div>
                   </div>
                 </figure>
@@ -327,8 +365,8 @@
 
     <div class="end-content-wrapper container">
       <section id="conclusion" class="content-section animate-on-scroll">
-          <h2 class="content-section-heading">A Call for Rebalance</h2>
-          <p class="section-description">The data tells a clear story: a strategy overwhelmingly focused on law enforcement has not curbed the rising tide of drug-related harm. A sustainable path forward requires a systemic rebalancing—investing in evidence-based treatment, harm reduction, and community support with the same urgency and resources dedicated to policing. The challenge is not just to fight a 'war on drugs', but to build a resilient public health infrastructure that can heal and empower communities.</p>
+          <h2 class="content-section-heading">A Call for Balance</h2>
+          <p class="section-description">The data tells a clear story. A strategy focused overwhelmingly on arrests has not solved the problem. To build a safer and healthier future, Sri Lanka must rebalance its approach. This means investing in evidence-based treatment, harm reduction, and community support with the same energy and resources currently dedicated to policing. The goal should not be to win a 'war on drugs', but to build a public health system strong enough to support its citizens.</p>
       </section>
       
       <hr class="section-divider">
@@ -344,20 +382,20 @@
           <div class="tab-panels">
             <div id="tab-panel-journalistic" role="tabpanel" tabindex="0" aria-labelledby="tab-journalistic" class="tab-panel active">
               <div class="citation-box">
-                <p id="cite-journalistic">Chatura Dissanayake. (2025). <em>The Shadow War: Unpacking Sri Lanka's Drug Crisis</em>. Retrieved from https://chaturadissanayake.github.io/the-shadow-war/</p>
+                <p id="cite-journalistic">Chatura Dissanayake. (2025). <em>The Shadow War: Sri Lanka's Drug Crisis, Told Through Data</em>. Retrieved from https://chaturadissanayake.github.io/the-shadow-war/</p>
                 <button class="copy-btn" data-clipboard-target="#cite-journalistic" aria-label="Copy Journalistic Citation"></button>
               </div>
             </div>
             <div id="tab-panel-apa" role="tabpanel" tabindex="0" aria-labelledby="tab-apa" class="tab-panel">
               <div class="citation-box">
-                <p id="cite-apa">Dissanayake, C. (2025). <em>The Shadow War: Unpacking Sri Lanka's Drug Crisis</em> [Data Story]. Retrieved from https://chaturadissanayake.github.io/the-shadow-war/</p>
+                <p id="cite-apa">Dissanayake, C. (2025). <em>The Shadow War: Sri Lanka's Drug Crisis, Told Through Data</em> [Data Story]. Retrieved from https://chaturadissanayake.github.io/the-shadow-war/</p>
                 <button class="copy-btn" data-clipboard-target="#cite-apa" aria-label="Copy APA Citation"></button>
               </div>
             </div>
             <div id="tab-panel-bibtex" role="tabpanel" tabindex="0" aria-labelledby="tab-bibtex" class="tab-panel">
               <div class="citation-box bibtex">
 <pre id="bibtex-content">@article{dissanayake-drug-crisis-2025,
-  title = {The Shadow War: Unpacking Sri Lanka's Drug Crisis},
+  title = {The Shadow War: Sri Lanka's Drug Crisis, Told Through Data},
   author = {Dissanayake, Chatura},
   year = {2025},
   journal = {Data Story},
@@ -373,41 +411,41 @@
       <hr class="section-divider">
 
       <section id="behind-the-numbers" class="content-section animate-on-scroll">
-        <details class="accordion">
+        <details class="accordion" open>
             <summary class="accordion-trigger">
                 <h2 class="accordion-heading">Behind the Numbers</h2>
                 <span class="accordion-icon" aria-hidden="true"></span>
             </summary>
             <div class="accordion-content">
-                <p class="section-description">This analysis is based on official data from national authorities. Direct access to primary sources and the full dataset is provided here to foster transparency, encourage further research, and support informed public debate.</p>
+                <p class="section-description">This analysis is based on official data from national authorities. Direct access to the full dataset and primary sources is provided here to foster transparency, encourage further research, and support informed public debate.</p>
                 
-                <h4 class="data-subheading">Download the Data</h4>
+                <h4 class="data-subheading">Download Full Dataset</h4>
                 <div class="data-download-links">
-                    <a href="data/sri_lanka_drug_data_2018-2025.json" download class="btn-data-download">
-                        <span class="download-icon"></span> As JSON
+                    <a href="#" id="download-json-btn" class="btn-data-download">
+                        <span class="download-icon"></span> Download as JSON
                     </a>
-                    <a href="data/sri_lanka_drug_data_2018-2025.csv" download class="btn-data-download">
-                        <span class="download-icon"></span> As CSV
+                    <a href="#" id="download-csv-btn" class="btn-data-download">
+                        <span class="download-icon"></span> Download as CSV
                     </a>
                 </div>
 
                 <h4 class="data-subheading">Primary Sources</h4>
                 <ul class="source-list">
                     <li><a href="http://www.nddcb.gov.lk/Docs/research/Fact_sheet_January_July_2025.pdf" target="_blank" rel="noopener noreferrer">Fact Sheet Jan–Jul 2025 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/research/trends_of_drug_related_arrests.pdf" target="_blank" rel="noopener noreferrer">Trends of Drug-Related Arrests <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/research/trends_of_drug_related_arrests.pdf" target="_blank" rel="noopener noreferrer">Trends of Drug-Related Arrests (Summary) <span class="link-arrow">&rarr;</span></a></li>
                     <li><a href="http://www.nddcb.gov.lk/Docs/research/Trend_report_Dra_2024.pdf" target="_blank" rel="noopener noreferrer">Trend Report 2024 <span class="link-arrow">&rarr;</span></a></li>
                     <li><a href="http://www.nddcb.gov.lk/Docs/research/Statistical_Review_Tr_2024.pdf" target="_blank" rel="noopener noreferrer">Statistical Review 2024 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/research/Final_Handbook_2024.pdf" target="_blank" rel="noopener noreferrer">Final Handbook 2024 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/03%20NDDCB%202019%20%20English.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2019 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual%20Report%202020%20English.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2020 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual_2021.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2021 <span class="link-arrow">&rarr;</span></a></li>
-                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual_2022.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2022 <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/research/Final_Handbook_2024.pdf" target="_blank" rel="noopener noreferrer">Handbook of Drug Abuse Information 2024 <span class="link-arrow">&rarr;</span></a></li>
                     <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual_2023.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2023 <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual_2022.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2022 <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual_2021.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2021 <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/Annual%20Report%202020%20English.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2020 <span class="link-arrow">&rarr;</span></a></li>
+                    <li><a href="http://www.nddcb.gov.lk/Docs/annual_report/03%20NDDCB%202019%20%20English.pdf" target="_blank" rel="noopener noreferrer">Annual Report 2019 <span class="link-arrow">&rarr;</span></a></li>
                 </ul>
                  <div class="license-info">
                     <p>All text and original visualisations are available under a
                         <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
-                        Creative Commons BY-NC 4.0 License
+                        Creative Commons BY-NC 4.0 Licence
                         </a>.
                     </p>
                 </div>
@@ -421,14 +459,21 @@
   <footer id="site-footer" class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-main">
-        <div class="footer-section footer-about">
+        <div class="footer-section footer--about">
           <h4>The Shadow War</h4>
           <p>This independent data story by Chatura Dissanayake explores Sri Lanka's drug crisis through publicly available data, aiming to provide a clear, evidence-based perspective on a complex national issue.</p>
-           <p class="footer-contact">Questions or comments? <a href="mailto:contact@example.com">Email me</a>.</p>
+           <p class="footer-contact">Questions or comments? <a href="mailto:consultchatura@gmail.com">Email me</a>.</p>
         </div>
         <div class="footer-section">
           <h4>Navigate</h4>
-          <ul id="footer-nav" class="footer-links"></ul>
+          <ul id="footer-nav" class="footer-links">
+            <li><a href="#intro-screen">Home</a></li>
+            <li><a href="#key-takeaways">Key Findings</a></li>
+            <li><a href="#chart-arrests-treatment">The Data Story</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+            <li><a href="#cite-work">Cite This Work</a></li>
+            <li><a href="#behind-the-numbers">Sources & Data</a></li>
+          </ul>
         </div>
         <div class="footer-section">
           <h4>Connect & Share</h4>
@@ -448,7 +493,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright">&copy; 2025 Chatura Dissanayake. All rights reserved. <span id="last-updated-footer"></span></p>
+        <p class="copyright">&copy; 2025 Chatura Dissanayake. All rights reserved. <span id="last-updated-footer">Updated: 1 October 2025</span></p>
       </div>
     </div>
   </footer>
@@ -457,7 +502,7 @@
 
   <div id="image-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-caption">
     <div class="lightbox-content">
-      </div>
+        </div>
     <button id="close-lightbox" class="lightbox-close" aria-label="Close image view"></button>
   </div>
 
@@ -486,7 +531,7 @@
     </div>
   </noscript>
 
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="chatura" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
   <script src="app.js"></script>
 </body>
 </html>
-
