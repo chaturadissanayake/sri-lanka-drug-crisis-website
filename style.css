@@ -1,5 +1,5 @@
 /* =========================================================
-   THE SHADOW WAR — V7.4 STYLESHEET (FINAL REFINEMENTS)
+   THE SHADOW WAR — V7.5 STYLESHEET (BUGFIX & ENHANCEMENTS)
    ========================================================= */
 
 /* --------------------
@@ -758,6 +758,13 @@ figcaption {
     background-color: var(--bg-soft); border-color: var(--accent-2);
     transform: translateY(-2px); text-decoration: none;
 }
+.btn-data-download[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: var(--bg-elev);
+    border-color: var(--border);
+    transform: none;
+}
 .btn-data-download .download-icon {
   display: grid;
   place-items: center;
@@ -780,6 +787,34 @@ figcaption {
 
 .license-info { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--ink-mute); }
 
+/* --- NEW: Error message for failed data load --- */
+.error-message {
+    background-color: hsla(347, 78%, 50%, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+}
+.error-message h4 {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+}
+.error-message p {
+    color: var(--ink);
+    margin: 0;
+}
+.error-message code {
+    background: var(--bg-elev);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--ink-dim);
+}
 /* --------------------
    11. REDESIGNED FOOTER
    -------------------- */
